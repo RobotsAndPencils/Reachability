@@ -8,7 +8,7 @@
 
 #import "TMViewController.h"
 
-#import "Reachability.h"
+#import "TMReachability.h"
 
 @interface TMViewController (private) 
 
@@ -36,19 +36,19 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(reachabilityChanged:) 
-                                                 name:kReachabilityChangedNotification 
+                                                 name:kTMReachabilityChangedNotification
                                                object:nil];
     
-    Reachability * reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    TMReachability * reach = [TMReachability reachabilityWithHostname:@"www.google.com"];
     
-    reach.reachableBlock = ^(Reachability * reachability)
+    reach.reachableBlock = ^(TMReachability * reachability)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             blockLabel.text = @"Block Says Reachable";
         });
     };
     
-    reach.unreachableBlock = ^(Reachability * reachability)
+    reach.unreachableBlock = ^(TMReachability * reachability)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             blockLabel.text = @"Block Says Unreachable";
@@ -93,7 +93,7 @@
 
 -(void)reachabilityChanged:(NSNotification*)note
 {
-    Reachability * reach = [note object];
+    TMReachability * reach = [note object];
     
     if([reach isReachable])
     {

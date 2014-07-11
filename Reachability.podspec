@@ -19,6 +19,6 @@ Pod::Spec.new do |s|
   s.authors      = { 'Tony Million' => 'tonymillion@gmail.com' }
   s.summary      = 'ARC and GCD Compatible Reachability Class for iOS and OS X. Drop in replacement for Apple Reachability.'
   s.source       = { :git => 'https://github.com/tonymillion/Reachability.git', :tag => "v#{s.version}" }
-  s.source_files = 'Reachability.{h,m}'
+  s.source_files = 'TMReachability.{h,m}'
   s.framework    = 'SystemConfiguration'
 end
