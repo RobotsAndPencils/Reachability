@@ -38,10 +38,10 @@
 NSString *const kReachabilityChangedNotification = @"kReachabilityChangedNotification";
 
 
-@interface Reachability ()
+@interface TMReachability ()
 
 @property (nonatomic, assign) SCNetworkReachabilityRef  reachabilityRef;
-@property (nonatomic, strong) dispatch_queue_t          reachabilitySerialQueue;
+@property (nonatomic, assign) dispatch_queue_t          reachabilitySerialQueue;
 @property (nonatomic, strong) id                        reachabilityObject;
 
 -(void)reachabilityChanged:(SCNetworkReachabilityFlags)flags;
@@ -73,7 +73,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 {
 #pragma unused (target)
 
-    Reachability *reachability = ((__bridge Reachability*)info);
+    TMReachability *reachability = ((__bridge TMReachability*)info);
 
     // We probably don't need an autoreleasepool here, as GCD docs state each queue has its own autorelease pool,
     // but what the heck eh?
@@ -84,13 +84,13 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 }
 
 
-@implementation Reachability
+@implementation TMReachability
 
 #pragma mark - Class Constructor Methods
 
 +(instancetype)reachabilityWithHostName:(NSString*)hostname
 {
-    return [Reachability reachabilityWithHostname:hostname];
+    return [TMReachability reachabilityWithHostname:hostname];
 }
 
 +(instancetype)reachabilityWithHostname:(NSString*)hostname
